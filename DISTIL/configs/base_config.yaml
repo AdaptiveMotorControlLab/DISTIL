@@ -1,0 +1,17 @@
+# Base configuration for backdoor detection
+models_dir: "/home/public/data/masoud/Projects/Backdoor/round2-test-dataset"  # Replace with your models directory
+metadata_path: null  # Replace with your metadata file
+output_dir: "./evaluation_output"
+
+# Model evaluation parameters
+num_clean: 5  # Number of clean models to evaluate
+num_backdoor: 5  # Number of backdoored models to evaluate
+
+# Detection parameters (these will be overridden by grid search)
+guidance_scale: 100
+num_iterations: 2
+timestep: 50
+search_strategy: "greedy"
+
+# Hardware settings
+no_cuda: false  # Set to true to force CPU usage 

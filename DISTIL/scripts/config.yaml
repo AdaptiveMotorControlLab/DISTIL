@@ -1,0 +1,25 @@
+# Configuration for backdoor detection evaluation
+
+# Dataset settings
+models_dir: "/home/public/data/masoud/Projects/Backdoor/round2-test-dataset/"
+metadata_path: null  # Optional, set to null if not used
+
+# Output settings
+output_dir: "./evaluation_results"
+save_triggers: true
+
+# Detection parameters
+guidance_scale: 100.0
+num_iterations: 2
+timestep: 50
+add_noise: true  # Whether to add noise during image transformation
+grad_scale_factor: 0.142857  # Equivalent to 1/7
+
+# Search strategy
+# Options: 
+#   - "greedy": Use greedy_class_farthest to identify potential source-target pairs
+#   - "exhaustive": Try all possible source-target label pairs 
+search_strategy: "greedy"
+
+# Hardware settings
+no_cuda: false  # Set to true to disable CUDA even if available 

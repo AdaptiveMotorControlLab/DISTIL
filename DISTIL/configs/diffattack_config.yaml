@@ -1,0 +1,63 @@
+# Configuration for DiffAttack Detection Pipeline
+
+# --- Architecture ---
+# Specify the model architecture: 'ssd' or 'frcnn'
+architecture: ssd
+
+# --- Device ---
+# Auto-detect CUDA or use CPU. Set explicitly (e.g., 'cuda:0' or 'cpu') if needed.
+device: auto # Options: 'auto', 'cuda', 'cpu', 'cuda:0', etc.
+
+# --- Paths ---
+# Adjust these paths based on your actual directory structure
+# Use null or remove the key if you want the script to use defaults or environment variables.
+# MODEL_DATA_ROOT should point to the directory containing model subfolders (e.g., id-00000000)
+model_data_root: /teamspace/studios/this_studio/object-detection-jul2022-train/models # Example: /path/to/your/model/data
+# OUTPUT_DIR_BASE is where results (triggers, logs, summaries) will be saved
+output_dir_base: /teamspace/studios/this_studio/Object_detection_triggers # Example: /path/to/your/output/directory
+
+# --- Trigger Generation Hyperparameters ---
+trigger_generation:
+  ssd:
+    guidance_scale_init: 50
+    guidance_scale_factor: 2.5
+    timestep: 100
+    confidence_threshold: 0.95
+    max_iterations: 2
+  frcnn:
+    guidance_scale_init: 25
+    guidance_scale_factor: 3.5
+    timestep: 50
+    confidence_threshold: 0.95
+    max_iterations: 2
+
+# --- Evaluation ---
+evaluation:
+  # Threshold for considering bounding boxes during trigger generation/evaluation
+  box_conf_threshold:
+    ssd: 0.5
+    frcnn: 0.99 # Original was 0.99, might need adjustment
+  # Number of clean images to process per model (null or omit to process all)
+  num_clean_images_per_model: 4 # Original: 4 for SSD, 1 for FRCNN
+
+# --- GLIDE Options ---
+# Settings for the GLIDE diffusion model used in trigger generation
+glide:
+  # Automatically use fp16 if CUDA is available?
+  use_fp16_if_cuda: true
+  # Default image size for the base GLIDE model
+  image_size: 64
+  # Checkpoint name (e.g., 'base', 'base-inpaint')
+  checkpoint: base
+  # NOTE: timestep_respacing is dynamically set based on architecture (SSD/FRCNN) in the code.
+  # Other options from model_and_diffusion_defaults() can be added here if needed.
+
+# --- Model Specifics ---
+model_specifics:
+  num_classes:
+    ssd: 21 # Adjust if your SSD model differs
+    frcnn: 91 # Default for COCO, adjust if needed
+
+# --- Other ---
+# Set random seed for reproducibility (null or omit for no fixed seed)
+# random_seed: 42 
