@@ -8,9 +8,13 @@ DISTIL is an innovative trigger-inversion method for deep neural networks that r
 <img src="Figs/Fig_1.png" alt="Main method overview"/>
 </p>
 
-# Demo
+# Demos
 
-✨ coming soon
+- [backdoor_detector_TrojAI_Round1.ipynb](./backdoor_detector_TrojAI_Round1.ipynb)  
+- [backdoor_detector_objDetection.ipynb](./backdoor_detector_objDetection.ipynb)  
+- [mitigation_task.ipynb](./mitigation_task.ipynb)  
+- [target_class_prediction_task.ipynb](./target_class_prediction_task.ipynb)
+
 
 # Citation 
 Please cite our work if you use the codebase: 
